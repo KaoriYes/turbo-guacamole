@@ -1,0 +1,379 @@
+:root {
+	/* Light colors */
+	--primary-color-light: #e2e1e5;
+	--secondary-color-light: #a60001;
+	--logo-color-light: #073854;
+	--text-color-light: #242424;
+	--bg-color-light: #c5c5c58c;
+	--info-color-light: lightskyblue;
+	--success-color-light: green;
+	--error-color-light: #ad0000;
+	/* Dark colors */
+	--primary-color-dark: #e2e1e5;
+	--secondary-color-dark: #a60001;
+	--logo-color-dark: #073854;
+	--border-color: #c5d9e044;
+	--text-color-dark: rgba(255, 255, 255, 0.87);
+	--bg-color-dark: #242424;
+	--info-color-dark: #0462ae;
+	--success-color-dark: #00ff00;
+	--error-color-dark: #ff4242;
+	--disabled-color: #c4c4c4a2;
+	--border-form-color: #e2e1e5;
+	--primary-font: Mona sans, sans serif;
+	--secondary-font: Otypical Headline, sans serif;
+}
+
+/* System prefers dark */
+@media (prefers-color-scheme: light),
+	(prefers-color-scheme: dark),
+	(prefers-color-scheme: no-preference) {
+	:root {
+		--primary-color: var(--primary-color-dark);
+		--secondary-color: var(--secondary-color-dark);
+		--text-color-inverse: var(--bg-color-dark);
+		--text-color: var(--text-color-dark);
+		--bg-color: var(--bg-color-dark);
+		--bg-color-circle: var(--primary-color-dark);
+		--info-color: var(--info-color-dark);
+		--success-color: var(--success-color-dark);
+		--error-color: var(--error-color-dark);
+		accent-color: var(--link-color-dark);
+		color-scheme: dark;
+		font-palette: dark;
+	}
+}
+
+@font-face {
+	font-family: Noto Sans;
+	src: url("/fonts/NotoSansKhmer-Light.ttf");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: Mona sans;
+	src: url("/fonts/MonaSans-Regular.ttf");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: Mona sans;
+	src: url("/fonts/MonaSans-Light.ttf");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: Mona sans;
+	src: url("/fonts/MonaSans-ExtraLight.ttf");
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: Mona sans;
+	src: url("/fonts/MonaSans-Medium.ttf");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: Mona sans;
+	src: url("/fonts/MonaSans-Bold.ttf");
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: Mona sans;
+	src: url("/fonts/MonaSans-SemiBold.ttf");
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: Otypical Headline;
+	src: url("/fonts/Otypical_Headline.ttf");
+	font-weight: 600;
+}
+
+html {
+	scroll-snap-type: y mandatory;
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	background-attachment: fixed;
+	background-size: 100vw 100vh;
+	color: var(--text-color);
+	background-color: var(--bg-color);
+	font-family: var(--primary-font);
+	font-size: 1em;
+	font-weight: 300;
+}
+
+h2 {
+	font-size: 1.125rem;
+	font-weight: 600;
+	font-family: "Otypical Headline";
+}
+
+h3 {
+	font-size: 1.125rem;
+	font-weight: 500;
+	font-family: "Otypical Headline";
+}
+
+.visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
+}
+
+* {
+	--size-globe: 50vw;
+	--color-shade-gray: #1212120a;
+	--size-translate: calc(var(--size-globe) * 0.4999);
+}
+
+body {
+	height: 500vh !important;
+}
+
+aside {
+	position: fixed;
+	width: fit-content;
+	z-index: 99999;
+	bottom: 15vh;
+	right: 5vw;
+	animation: infomove;
+	animation-duration: 6.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+section {
+	position: fixed;
+	top: calc(50vh - (var(--size-globe) / 2));
+	left: calc(50vw - (var(--size-globe) / 2));
+	height: var(--size-globe);
+	width: var(--size-globe);
+	background-color: var(--bg-color);
+	border-radius: 50%;
+	box-shadow: calc(var(--size-globe) * 0.0025) calc(var(--size-globe) * 0.0025)
+			calc(var(--size-globe) * 0.025) calc(var(--size-globe) * 0.025) #fff,
+		-2.5vw -1vw 0 0 rgba(50, 50, 50, 1) inset,
+		-23vw -35vw 0 0 rgba(0, 0, 0, 0.3) inset,
+		-5vw -2.5vw 0 0 rgba(50, 50, 50, 0.8) inset;
+	perspective-origin: bottom;
+	transform-style: preserve-3d;
+	z-index: 99;
+	pointer-events: none;
+	animation: move;
+	animation-duration: 6.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+a {
+	position: absolute;
+	cursor: pointer;
+	background-color: var(--bg-color-circle);
+	width: var(--size-country);
+	height: var(--size-country);
+	-webkit-mask-size: 100%;
+	-webkit-mask-position: 50%;
+	background-repeat: no-repeat;
+	left: calc(50% - (var(--size-country) / 2));
+	top: calc(50% - (var(--size-country) / 2));
+	-webkit-mask-repeat: no-repeat;
+	animation: globe-scroll linear forwards infinite 30s;
+
+	backface-visibility: inherit;
+	transform-origin: 50%;
+	--rotate-3d-animation: rotate3d(-0.5, 1, 0.1, 720deg);
+	pointer-events: initial;
+	/* rotate: -1 0 0 15deg; */
+}
+
+a:focus,
+a:hover {
+	background-color: red;
+}
+
+a[aria-current="page"] {
+	background-color: var(--secondary-color);
+}
+
+a:nth-of-type(1) {
+	mask-image: url("/SVG/NL.svg");
+	transform-origin: top;
+	--size-country: 15%;
+	height: calc(var(--size-country) * 1.1);
+	--size-translate: calc(
+		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.17)
+	);
+	--translate-animation: rotateY(0) scale3d(1, 1, 0.8)
+		translate3d(60%, -155%, var(--size-translate));
+	--translate-animation-end: scale3d(1, 1, 0.8)
+		translate3d(60%, -155%, var(--size-translate));
+}
+
+a:nth-of-type(2) {
+	mask-image: url("/SVG/france.svg");
+	--size-country: 25%;
+	/* rotate: 0 0 -1 10deg; */
+	--size-translate: calc(
+		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
+	);
+	--translate-animation: rotateY(0) translate3d(-10%, 0%, var(--size-translate));
+	--translate-animation-end: translate3d(-10%, 0%, var(--size-translate));
+}
+
+a:nth-of-type(3) {
+	mask-image: url("/SVG/Spain.svg");
+	--size-country: 30%;
+	--size-translate: calc(
+		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
+	);
+	--translate-animation: rotateY(0)
+		translate3d(-50%, 75%, var(--size-translate));
+	--translate-animation-end: translate3d(-50%, 75%, var(--size-translate));
+}
+
+a:nth-of-type(4) {
+	mask-image: url("/SVG/Germany.svg");
+	--size-country: 30%;
+	--size-translate: calc(
+		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
+	);
+	--translate-animation: rotateY(0)
+		translate3d(95%, -70%, var(--size-translate));
+	--translate-animation-end: translate3d(95%, -70%, var(--size-translate));
+	scroll-margin: 50vh;
+}
+
+a:nth-of-type(5) {
+	mask-image: url("/SVG/Estonia.svg");
+	--size-country: 20%;
+	rotate: -0.6 1 0 180deg;
+	height: calc(var(--size-country) * 1);
+	--size-translate: calc((var(--size-globe) * 0.4999));
+	--translate-animation: rotateY(0) scale3d(1, 1, 1)
+		translate3d(-50%, -75%, var(--size-translate));
+	--translate-animation-end: scale3d(1, 1, 1)
+		translate3d(-50%, -75%, var(--size-translate));
+}
+
+a:nth-of-type(6) {
+	mask-image: url("/SVG/finland.svg");
+	--size-country: 30%;
+	rotate: -0.6 1 0 180deg;
+	height: calc(var(--size-country) * 1);
+	--size-translate: calc((var(--size-globe) * 0.4999));
+	--translate-animation: rotateY(0) scale3d(1, 1, 1)
+		translate3d(-20%, -125%, var(--size-translate));
+	--translate-animation-end: scale3d(1, 1, 1)
+		translate3d(-20%, -125%, var(--size-translate));
+}
+
+a:nth-of-type(7) {
+	mask-image: url("/SVG/Malta.svg");
+	--size-country: 12.5%;
+	rotate: 0 1 0 45deg;
+	height: calc(var(--size-country) * 1.1);
+	--size-translate: calc(
+		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
+	);
+	--translate-animation: rotateY(0) scale3d(1, 1, 0.85)
+		translate3d(120%, 160%, var(--size-translate));
+	--translate-animation-end: scale3d(1, 1, 0.85)
+		translate3d(120%, 160%, var(--size-translate));
+}
+
+a.disabled {
+	background-color: var(--disabled-color) !important;
+	pointer-events: none;
+}
+
+a.disabled:hover {
+	background-color: var(--disabled-color) !important;
+
+	cursor: not-allowed;
+}
+
+@supports (animation-timeline: scroll(root block)) {
+	a {
+		animation: globe-scroll linear forwards;
+		animation-range: contain;
+		animation-timeline: scroll(root block);
+	}
+}
+
+@keyframes globe-scroll {
+	from {
+		transform: var(--translate-animation);
+	}
+
+	to {
+		transform: var(--rotate-3d-animation) var(--translate-animation-end);
+	}
+}
+
+@keyframes move {
+	0% {
+		transform: translateY(-8px) translateX(-4px);
+	}
+
+	50% {
+		transform: translateY(8px) translateX(4px);
+	}
+
+	100% {
+		transform: translateY(-8px) translateX(-4px);
+	}
+}
+
+@keyframes infomove {
+	0% {
+		transform: translateY(-8px);
+	}
+
+	50% {
+		transform: translateY(8px);
+	}
+
+	100% {
+		transform: translateY(-8px);
+	}
+}
+
+@media (pointer: coarse) {
+	@supports (animation-timeline: scroll(root block)) {
+		a.country {
+			animation: globe-scroll linear forwards infinite 30s;
+			/* Need to remove this later*/
+		}
+	}
+
+	* {
+		--size-globe: 85vw;
+	}
+
+	:global(body) {
+		height: 100vh !important;
+		overflow: hidden;
+	}
+
+	section {
+		top: calc(33vh - (var(--size-globe) / 2)) !important;
+	}
+
+	aside {
+		top: 75%;
+		left: 50%;
+		translate: -50% -50%;
+	}
+}
