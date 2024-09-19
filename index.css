@@ -268,18 +268,6 @@ a:nth-of-type(5) {
 }
 
 a:nth-of-type(6) {
-	mask-image: url("./SVG/finland.svg");
-	--size-country: 30%;
-	rotate: -0.6 1 0 180deg;
-	height: calc(var(--size-country) * 1);
-	--size-translate: calc((var(--size-globe) * 0.4999));
-	--translate-animation: rotateY(0) scale3d(1, 1, 1)
-		translate3d(-20%, -125%, var(--size-translate));
-	--translate-animation-end: scale3d(1, 1, 1)
-		translate3d(-20%, -125%, var(--size-translate));
-}
-
-a:nth-of-type(7) {
 	mask-image: url("./SVG/Malta.svg");
 	--size-country: 12.5%;
 	rotate: 0 1 0 45deg;
@@ -292,6 +280,20 @@ a:nth-of-type(7) {
 	--translate-animation-end: scale3d(1, 1, 0.85)
 		translate3d(120%, 160%, var(--size-translate));
 }
+
+a:nth-of-type(7) {
+	mask-image: url("./SVG/finland.svg");
+	--size-country: 30%;
+	rotate: -0.6 1 0 180deg;
+	height: calc(var(--size-country) * 1);
+	--size-translate: calc((var(--size-globe) * 0.4999));
+	--translate-animation: rotateY(0) scale3d(1, 1, 1)
+		translate3d(-20%, -125%, var(--size-translate));
+	--translate-animation-end: scale3d(1, 1, 1)
+		translate3d(-20%, -125%, var(--size-translate));
+}
+
+
 
 a.disabled {
 	background-color: var(--disabled-color) !important;
