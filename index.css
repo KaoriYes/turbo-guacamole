@@ -98,6 +98,7 @@ html {
 }
 
 body {
+	height: 500vh;
 	margin: 0;
 	background-attachment: fixed;
 	background-size: 100vw 100vh;
@@ -106,18 +107,171 @@ body {
 	font-family: var(--primary-font);
 	font-size: 1em;
 	font-weight: 300;
-}
 
-h2 {
-	font-size: 1.125rem;
-	font-weight: 600;
-	font-family: "Otypical Headline";
-}
+	section {
+		position: fixed;
+		top: calc(50vh - (var(--size-globe) / 2));
+		left: calc(50vw - (var(--size-globe) / 2));
+		height: var(--size-globe);
+		width: var(--size-globe);
+		background-color: var(--bg-color);
+		border-radius: 50%;
+		box-shadow: calc(var(--size-globe) * 0.0025)
+				calc(var(--size-globe) * 0.0025) calc(var(--size-globe) * 0.025)
+				calc(var(--size-globe) * 0.025) #fff,
+			-2.5vw -1vw 0 0 rgba(50, 50, 50, 1) inset,
+			-23vw -35vw 0 0 rgba(0, 0, 0, 0.3) inset,
+			-5vw -2.5vw 0 0 rgba(50, 50, 50, 0.8) inset;
+		perspective-origin: bottom;
+		transform-style: preserve-3d;
+		z-index: 99;
+		pointer-events: none;
+		animation: move;
+		animation-duration: 6.5s;
+		animation-iteration-count: infinite;
+		animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
 
-h3 {
-	font-size: 1.125rem;
-	font-weight: 500;
-	font-family: "Otypical Headline";
+		a {
+			position: absolute;
+			cursor: pointer;
+			background-color: var(--bg-color-circle);
+			width: var(--size-country);
+			height: var(--size-country);
+			-webkit-mask-size: 100%;
+			-webkit-mask-position: 50%;
+			background-repeat: no-repeat;
+			left: calc(50% - (var(--size-country) / 2));
+			top: calc(50% - (var(--size-country) / 2));
+			-webkit-mask-repeat: no-repeat;
+			animation: globe-scroll linear forwards infinite 30s;
+
+			backface-visibility: inherit;
+			transform-origin: 50%;
+			--rotate-3d-animation: rotate3d(-0.5, 1, 0.1, 720deg);
+			pointer-events: initial;
+
+			&:focus,
+			&:hover {
+				background-color: red;
+			}
+
+			&:nth-of-type(1) {
+				mask-image: url("/turbo-guacamole/SVG/NL.svg");
+				transform-origin: top;
+				--size-country: 15%;
+				height: calc(var(--size-country) * 1.1);
+				--size-translate: calc(
+					(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.17)
+				);
+				--translate-animation: rotateY(0) scale3d(1, 1, 0.8)
+					translate3d(60%, -155%, var(--size-translate));
+				--translate-animation-end: scale3d(1, 1, 0.8)
+					translate3d(60%, -155%, var(--size-translate));
+			}
+
+			&:nth-of-type(2) {
+				mask-image: url("/turbo-guacamole/SVG/france.svg");
+				--size-country: 25%;
+				/* rotate: 0 0 -1 10deg; */
+				--size-translate: calc(
+					(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
+				);
+				--translate-animation: rotateY(0)
+					translate3d(-10%, 0%, var(--size-translate));
+				--translate-animation-end: translate3d(-10%, 0%, var(--size-translate));
+			}
+
+			&:nth-of-type(3) {
+				mask-image: url("/turbo-guacamole/SVG/Spain.svg");
+				--size-country: 30%;
+				--size-translate: calc(
+					(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
+				);
+				--translate-animation: rotateY(0)
+					translate3d(-50%, 75%, var(--size-translate));
+				--translate-animation-end: translate3d(
+					-50%,
+					75%,
+					var(--size-translate)
+				);
+			}
+
+			&:nth-of-type(4) {
+				mask-image: url("/turbo-guacamole/SVG/Germany.svg");
+				--size-country: 30%;
+				--size-translate: calc(
+					(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
+				);
+				--translate-animation: rotateY(0)
+					translate3d(95%, -70%, var(--size-translate));
+				--translate-animation-end: translate3d(
+					95%,
+					-70%,
+					var(--size-translate)
+				);
+				scroll-margin: 50vh;
+			}
+
+			&:nth-of-type(5) {
+				mask-image: url("/turbo-guacamole/SVG/Estonia.svg");
+				--size-country: 20%;
+				rotate: -0.6 1 0 180deg;
+				height: calc(var(--size-country) * 1);
+				--size-translate: calc((var(--size-globe) * 0.4999));
+				--translate-animation: rotateY(0) scale3d(1, 1, 1)
+					translate3d(-50%, -75%, var(--size-translate));
+				--translate-animation-end: scale3d(1, 1, 1)
+					translate3d(-50%, -75%, var(--size-translate));
+			}
+
+			&:nth-of-type(6) {
+				mask-image: url("/turbo-guacamole/SVG/Malta.svg");
+				--size-country: 12.5%;
+				rotate: 0 1 0 45deg;
+				height: calc(var(--size-country) * 1.1);
+				--size-translate: calc(
+					(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
+				);
+				--translate-animation: rotateY(0) scale3d(1, 1, 0.85)
+					translate3d(120%, 160%, var(--size-translate));
+				--translate-animation-end: scale3d(1, 1, 0.85)
+					translate3d(120%, 160%, var(--size-translate));
+			}
+
+			&:nth-of-type(7) {
+				mask-image: url("/turbo-guacamole/SVG/finland.svg");
+				--size-country: 30%;
+				rotate: -0.6 1 0 180deg;
+				height: calc(var(--size-country) * 1);
+				--size-translate: calc((var(--size-globe) * 0.4999));
+				--translate-animation: rotateY(0) scale3d(1, 1, 1)
+					translate3d(-20%, -125%, var(--size-translate));
+				--translate-animation-end: scale3d(1, 1, 1)
+					translate3d(-20%, -125%, var(--size-translate));
+			}
+
+			&.disabled {
+				background-color: var(--disabled-color) !important;
+				pointer-events: none;
+				&:hover {
+					background-color: var(--disabled-color) !important;
+
+					cursor: not-allowed;
+				}
+			}
+		}
+	}
+	aside {
+		position: fixed;
+		width: fit-content;
+		z-index: 99999;
+		bottom: 15vh;
+		right: 5vw;
+		animation: infomove;
+		animation-duration: 6.5s;
+		animation-iteration-count: infinite;
+		animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+	}
 }
 
 .visually-hidden {
@@ -136,174 +290,6 @@ h3 {
 	--size-globe: 50vw;
 	--color-shade-gray: #1212120a;
 	--size-translate: calc(var(--size-globe) * 0.4999);
-}
-
-body {
-	height: 500vh !important;
-}
-
-aside {
-	position: fixed;
-	width: fit-content;
-	z-index: 99999;
-	bottom: 15vh;
-	right: 5vw;
-	animation: infomove;
-	animation-duration: 6.5s;
-	animation-iteration-count: infinite;
-	animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
-}
-
-section {
-	position: fixed;
-	top: calc(50vh - (var(--size-globe) / 2));
-	left: calc(50vw - (var(--size-globe) / 2));
-	height: var(--size-globe);
-	width: var(--size-globe);
-	background-color: var(--bg-color);
-	border-radius: 50%;
-	box-shadow: calc(var(--size-globe) * 0.0025) calc(var(--size-globe) * 0.0025)
-			calc(var(--size-globe) * 0.025) calc(var(--size-globe) * 0.025) #fff,
-		-2.5vw -1vw 0 0 rgba(50, 50, 50, 1) inset,
-		-23vw -35vw 0 0 rgba(0, 0, 0, 0.3) inset,
-		-5vw -2.5vw 0 0 rgba(50, 50, 50, 0.8) inset;
-	perspective-origin: bottom;
-	transform-style: preserve-3d;
-	z-index: 99;
-	pointer-events: none;
-	animation: move;
-	animation-duration: 6.5s;
-	animation-iteration-count: infinite;
-	animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
-}
-
-a {
-	position: absolute;
-	cursor: pointer;
-	background-color: var(--bg-color-circle);
-	width: var(--size-country);
-	height: var(--size-country);
-	-webkit-mask-size: 100%;
-	-webkit-mask-position: 50%;
-	background-repeat: no-repeat;
-	left: calc(50% - (var(--size-country) / 2));
-	top: calc(50% - (var(--size-country) / 2));
-	-webkit-mask-repeat: no-repeat;
-	animation: globe-scroll linear forwards infinite 30s;
-
-	backface-visibility: inherit;
-	transform-origin: 50%;
-	--rotate-3d-animation: rotate3d(-0.5, 1, 0.1, 720deg);
-	pointer-events: initial;
-	/* rotate: -1 0 0 15deg; */
-}
-
-a:focus,
-a:hover {
-	background-color: red;
-}
-
-a[aria-current="page"] {
-	background-color: var(--secondary-color);
-}
-
-a:nth-of-type(1) {
-	mask-image: url("/turbo-guacamole/SVG/NL.svg");
-	transform-origin: top;
-	--size-country: 15%;
-	height: calc(var(--size-country) * 1.1);
-	--size-translate: calc(
-		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.17)
-	);
-	--translate-animation: rotateY(0) scale3d(1, 1, 0.8)
-		translate3d(60%, -155%, var(--size-translate));
-	--translate-animation-end: scale3d(1, 1, 0.8)
-		translate3d(60%, -155%, var(--size-translate));
-}
-
-a:nth-of-type(2) {
-	mask-image: url("/turbo-guacamole/SVG/france.svg");
-	--size-country: 25%;
-	/* rotate: 0 0 -1 10deg; */
-	--size-translate: calc(
-		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
-	);
-	--translate-animation: rotateY(0) translate3d(-10%, 0%, var(--size-translate));
-	--translate-animation-end: translate3d(-10%, 0%, var(--size-translate));
-}
-
-a:nth-of-type(3) {
-	mask-image: url("/turbo-guacamole/SVG/Spain.svg");
-	--size-country: 30%;
-	--size-translate: calc(
-		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
-	);
-	--translate-animation: rotateY(0)
-		translate3d(-50%, 75%, var(--size-translate));
-	--translate-animation-end: translate3d(-50%, 75%, var(--size-translate));
-}
-
-a:nth-of-type(4) {
-	mask-image: url("/turbo-guacamole/SVG/Germany.svg");
-	--size-country: 30%;
-	--size-translate: calc(
-		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
-	);
-	--translate-animation: rotateY(0)
-		translate3d(95%, -70%, var(--size-translate));
-	--translate-animation-end: translate3d(95%, -70%, var(--size-translate));
-	scroll-margin: 50vh;
-}
-
-a:nth-of-type(5) {
-	mask-image: url("/turbo-guacamole/SVG/Estonia.svg");
-	--size-country: 20%;
-	rotate: -0.6 1 0 180deg;
-	height: calc(var(--size-country) * 1);
-	--size-translate: calc((var(--size-globe) * 0.4999));
-	--translate-animation: rotateY(0) scale3d(1, 1, 1)
-		translate3d(-50%, -75%, var(--size-translate));
-	--translate-animation-end: scale3d(1, 1, 1)
-		translate3d(-50%, -75%, var(--size-translate));
-}
-
-a:nth-of-type(6) {
-	mask-image: url("/turbo-guacamole/SVG/Malta.svg");
-	--size-country: 12.5%;
-	rotate: 0 1 0 45deg;
-	height: calc(var(--size-country) * 1.1);
-	--size-translate: calc(
-		(var(--size-globe) * 0.4999) + (var(--size-globe) * 0.05)
-	);
-	--translate-animation: rotateY(0) scale3d(1, 1, 0.85)
-		translate3d(120%, 160%, var(--size-translate));
-	--translate-animation-end: scale3d(1, 1, 0.85)
-		translate3d(120%, 160%, var(--size-translate));
-}
-
-a:nth-of-type(7) {
-	mask-image: url("/turbo-guacamole/SVG/finland.svg");
-	--size-country: 30%;
-	rotate: -0.6 1 0 180deg;
-	height: calc(var(--size-country) * 1);
-	--size-translate: calc((var(--size-globe) * 0.4999));
-	--translate-animation: rotateY(0) scale3d(1, 1, 1)
-		translate3d(-20%, -125%, var(--size-translate));
-	--translate-animation-end: scale3d(1, 1, 1)
-		translate3d(-20%, -125%, var(--size-translate));
-}
-
-
-
-a.disabled {
-	background-color: var(--disabled-color) !important;
-	pointer-events: none;
-}
-
-a.disabled:hover {
-	background-color: var(--disabled-color) !important;
-
-	cursor: not-allowed;
 }
 
 @supports (animation-timeline: scroll(root block)) {
