@@ -91,7 +91,6 @@
 	src: url("/fonts/Otypical_Headline.ttf");
 	font-weight: 600;
 }
-
 * {
 	--size-globe: 50vw;
 	--color-shade-gray: #1212120a;
@@ -266,13 +265,6 @@ body {
 				}
 			}
 		}
-		@supports (animation-timeline: scroll(root block)) {
-			a {
-				animation: globe-scroll linear forwards;
-				animation-range: contain;
-				animation-timeline: scroll(root block);
-			}
-		}
 	}
 	aside {
 		position: fixed;
@@ -297,6 +289,14 @@ body {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
+}
+
+@supports (animation-timeline: scroll(root block)) {
+	a {
+		animation: globe-scroll linear forwards !important;
+		animation-range: contain !important;
+		animation-timeline: scroll(root block) !important;
+	}
 }
 
 @keyframes globe-scroll {
