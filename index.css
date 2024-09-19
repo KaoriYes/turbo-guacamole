@@ -92,6 +92,12 @@
 	font-weight: 600;
 }
 
+* {
+	--size-globe: 50vw;
+	--color-shade-gray: #1212120a;
+	--size-translate: calc(var(--size-globe) * 0.4999);
+}
+
 html {
 	scroll-snap-type: y mandatory;
 	scroll-behavior: smooth;
@@ -260,6 +266,13 @@ body {
 				}
 			}
 		}
+		@supports (animation-timeline: scroll(root block)) {
+			a {
+				animation: globe-scroll linear forwards;
+				animation-range: contain;
+				animation-timeline: scroll(root block);
+			}
+		}
 	}
 	aside {
 		position: fixed;
@@ -284,20 +297,6 @@ body {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
-}
-
-* {
-	--size-globe: 50vw;
-	--color-shade-gray: #1212120a;
-	--size-translate: calc(var(--size-globe) * 0.4999);
-}
-
-@supports (animation-timeline: scroll(root block)) {
-	a {
-		animation: globe-scroll linear forwards;
-		animation-range: contain;
-		animation-timeline: scroll(root block);
-	}
 }
 
 @keyframes globe-scroll {
